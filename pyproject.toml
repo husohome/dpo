@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "dpo"
+version = "0.1.0"
+description = "dpo dataset on huggingface"
+authors = ["Shun-Fu Hu"]
+license = "Apache 2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+huggingface = "^0.0.1"
+torch = "^2.2.1"
+pandas = "^2.2.1"
+numpy = "^1.26.4"
+jupyter = "^1.0.0"
+python-dotenv = "^1.0.1"
+pydantic = "^2.6.3"
+loguru = "^0.7.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
