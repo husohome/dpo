@@ -8,13 +8,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-huggingface = "^0.0.1"
-torch = "^2.2.1"
 pandas = "^2.2.1"
-numpy = "^1.26.4"
-jupyter = "^1.0.0"
 python-dotenv = "^1.0.1"
-pydantic = "^2.6.3"
 loguru = "^0.7.2"
 
 
