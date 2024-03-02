@@ -2,6 +2,7 @@
 from dpo.clients import MistralClient
 from loguru import logger
 import random
+from typing import Literal
 
 logger.add("_chat_generator_error.log", rotation="500MB")
 
@@ -11,11 +12,14 @@ class MeetingDialog():
         self,
         num_participants: int = 3,
         talk_turns_before_intervention: int = 6,
-        topic="a hackathon project using generative AI"
-    ):    
-        self.participants = [MistralClient() for _ in range(num_participants)]
-        self.moderator = MistralClient()
-        self.baseline = MistralClient()
+        topic="a hackathon project using generative AI",
+        client_type: Literal["HostedMistral", "MistralAPI"] = "HostedMistral"
+    ):  
+
+        self.participants = [MistralClient.make(client_type) for _ in range(num_participants)]
+        self.moderator = MistralClient.make(client_type)
+        self.baseline = MistralClient.make(client_type)
+            
         self.history = []
         self.talk_turns = talk_turns_before_intervention
         self.topic = topic
@@ -37,7 +41,7 @@ class MeetingDialog():
             except:
                 logger.error(f"action call failed.")
         try:
-            self.intervene(self.moderator, "\n".join(self.history))
+            self.intervene(self.moderator, ";".join(self.history))
         except:
             logger.error(f"intervene call failed.")
         return self.history
